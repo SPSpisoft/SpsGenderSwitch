@@ -10,5 +10,5 @@ Android gender animate switch
 	}
   
   	dependencies {
-	        implementation 'com.github.SPSpisoft:SpsGenderSwitch:Tag'
+	        implementation 'com.github.SPSpisoft:SpsGenderSwitch:1.0.0'
 	}
