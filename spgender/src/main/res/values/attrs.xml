@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SpsSwitch">
+        <attr name="SwitchSize" format="dimension"/>
+        <attr name="TitleGender" format="string"/>
+        <attr name="TitleMale" format="string"/>
+        <attr name="TitleFemale" format="string"/>
+        <attr name="TextColor" format="color"/>
+    </declare-styleable>
+
+</resources>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/image_sex"
+        android:layout_width="@dimen/sps_lpr_sz_100"
+        android:layout_height="@dimen/sps_lpr_sz_100"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        android:src="@drawable/i_gendre" />
+
+    <TextView
+        android:id="@+id/i_text"
+        android:text="@string/title_gender"
+        android:layout_below="@+id/image_sex"
+        android:gravity="center"
+        android:layout_alignEnd="@+id/image_sex"
+        android:layout_alignStart="@+id/image_sex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </TextView>
+
+</RelativeLayout>

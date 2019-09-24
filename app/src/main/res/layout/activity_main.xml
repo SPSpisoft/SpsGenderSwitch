@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:context=".MainActivity">
+
+    <com.spisoft.spsswitch.SpsSwitch
+        app:SwitchSize="@dimen/sps_lpr_sz_50"
+        app:TitleFemale="@string/title_female"
+        app:TitleMale="@string/title_male"
+        app:TitleGender="@string/title_gender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
+    </com.spisoft.spsswitch.SpsSwitch>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">SpsSwitch</string>
+    <string name="title_gender">Gender</string>
+    <string name="title_male">Male</string>
+    <string name="title_female">Female</string>
+</resources>

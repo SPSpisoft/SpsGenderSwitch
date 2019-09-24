@@ -1,0 +1,2 @@
+include ':app', ':spgendre', ':spgender'
+rootProject.name='SpsGenderSwitch'

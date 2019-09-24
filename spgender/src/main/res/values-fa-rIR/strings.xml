@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SpsSwitch</string>
+    <string name="title_female">خانم</string>
+    <string name="title_gender">جنسیت</string>
+    <string name="title_male">آقا</string>
+</resources>
