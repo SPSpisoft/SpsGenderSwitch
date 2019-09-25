@@ -13,7 +13,7 @@
         android:layout_marginTop="1dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="1dp"
-        android:src="@drawable/i_gendre" />
+        android:src="@drawable/i_gender" />
 
     <TextView
         android:id="@+id/i_text"

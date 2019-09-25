@@ -71,6 +71,8 @@ public class SpsSwitch extends RelativeLayout {
             if(_TitleMale != null) TitleMale = _TitleMale;
             String _TitleFemale = typedArray.getString(R.styleable.SpsSwitch_TitleFemale);
             if(_TitleFemale != null) TitleFemale = _TitleFemale;
+            if(typedArray.getBoolean(R.styleable.SpsSwitch_TitleShow,true))
+                iText.setVisibility(VISIBLE);
 
             TextColor = typedArray.getColor(R.styleable.SpsSwitch_TextColor, Color.BLACK);
             typedArray.recycle();

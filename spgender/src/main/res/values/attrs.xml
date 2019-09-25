@@ -2,6 +2,7 @@
 <resources>
     <declare-styleable name="SpsSwitch">
         <attr name="SwitchSize" format="dimension"/>
+        <attr name="TitleShow" format="boolean"/>
         <attr name="TitleGender" format="string"/>
         <attr name="TitleMale" format="string"/>
         <attr name="TitleFemale" format="string"/>
