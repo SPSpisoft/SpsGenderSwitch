@@ -10,13 +10,12 @@ import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
-public class SpsSwitch extends RelativeLayout {
+public class SpGenderSwitch extends RelativeLayout {
     private static final int GENRE_MALE = 1, GENRE_FEMALE = 0;
     private Context mContext;
     private View rootView;
@@ -27,23 +26,23 @@ public class SpsSwitch extends RelativeLayout {
     private String TitleGender, TitleMale, TitleFemale;
     private int TextColor;
 
-    public SpsSwitch(Context context) {
+    public SpGenderSwitch(Context context) {
         super(context);
         init(context,null);
     }
 
-    public SpsSwitch(Context context, @Nullable AttributeSet attrs) {
+    public SpGenderSwitch(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         init(context,attrs);
     }
 
-    public SpsSwitch(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public SpGenderSwitch(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context,attrs);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public SpsSwitch(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public SpGenderSwitch(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
 
@@ -60,21 +59,21 @@ public class SpsSwitch extends RelativeLayout {
         TitleFemale = getResources().getString(R.string.title_female);
 
         if (attrs != null) {
-            final TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.SpsSwitch, 0, 0);
+            final TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.SpGenderSwitch, 0, 0);
 
-            iGenre.getLayoutParams().height = (int) typedArray.getDimension(R.styleable.SpsSwitch_SwitchSize,R.dimen.sps_lpr_sz_30);
-            iGenre.getLayoutParams().width = (int) typedArray.getDimension(R.styleable.SpsSwitch_SwitchSize,R.dimen.sps_lpr_sz_30);
+            iGenre.getLayoutParams().height = (int) typedArray.getDimension(R.styleable.SpGenderSwitch_SwitchSize,R.dimen.sps_lpr_sz_30);
+            iGenre.getLayoutParams().width = (int) typedArray.getDimension(R.styleable.SpGenderSwitch_SwitchSize,R.dimen.sps_lpr_sz_30);
 
-            String _TitleGender = typedArray.getString(R.styleable.SpsSwitch_TitleGender);
+            String _TitleGender = typedArray.getString(R.styleable.SpGenderSwitch_TitleGender);
             if(_TitleGender != null) TitleGender = _TitleGender;
-            String _TitleMale = typedArray.getString(R.styleable.SpsSwitch_TitleMale);
+            String _TitleMale = typedArray.getString(R.styleable.SpGenderSwitch_TitleMale);
             if(_TitleMale != null) TitleMale = _TitleMale;
-            String _TitleFemale = typedArray.getString(R.styleable.SpsSwitch_TitleFemale);
+            String _TitleFemale = typedArray.getString(R.styleable.SpGenderSwitch_TitleFemale);
             if(_TitleFemale != null) TitleFemale = _TitleFemale;
-            if(typedArray.getBoolean(R.styleable.SpsSwitch_TitleShow,true))
-                iText.setVisibility(VISIBLE);
+            if(!typedArray.getBoolean(R.styleable.SpGenderSwitch_TitleShow,true))
+                iText.setVisibility(GONE);
 
-            TextColor = typedArray.getColor(R.styleable.SpsSwitch_TextColor, Color.BLACK);
+            TextColor = typedArray.getColor(R.styleable.SpGenderSwitch_TextColor, Color.BLACK);
             typedArray.recycle();
         }
 

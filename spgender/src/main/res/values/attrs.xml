@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="SpsSwitch">
+    <declare-styleable name="SpGenderSwitch">
         <attr name="SwitchSize" format="dimension"/>
         <attr name="TitleShow" format="boolean"/>
         <attr name="TitleGender" format="string"/>

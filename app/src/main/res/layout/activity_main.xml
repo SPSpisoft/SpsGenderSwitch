@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     tools:context=".MainActivity">
 
-    <com.spisoft.spsswitch.SpsSwitch
+    <com.spisoft.spsswitch.SpGenderSwitch
         app:SwitchSize="@dimen/sps_lpr_sz_50"
         app:TitleFemale="@string/title_female"
         app:TitleMale="@string/title_male"
@@ -14,6 +14,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:ignore="MissingConstraints">
-    </com.spisoft.spsswitch.SpsSwitch>
+    </com.spisoft.spsswitch.SpGenderSwitch>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
