@@ -7,13 +7,13 @@
     tools:context=".MainActivity">
 
     <com.spisoft.spsswitch.SpGenderSwitch
-        app:SwitchSize="@dimen/sps_lpr_sz_50"
-        app:TitleFemale="@string/title_female"
-        app:TitleMale="@string/title_male"
-        app:TitleGender="@string/title_gender"
+        android:id="@+id/met"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints">
-    </com.spisoft.spsswitch.SpGenderSwitch>
+        app:SwitchSize="@dimen/sps_lpr_sz_50"
+        app:TitleFemale="@string/title_female"
+        app:TitleGender="@string/title_gender"
+        app:TitleMale="@string/title_male"
+        tools:ignore="MissingConstraints"></com.spisoft.spsswitch.SpGenderSwitch>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

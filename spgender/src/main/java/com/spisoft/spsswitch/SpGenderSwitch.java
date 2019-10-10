@@ -25,6 +25,15 @@ public class SpGenderSwitch extends RelativeLayout {
     private TextView iText;
     private String TitleGender, TitleMale, TitleFemale;
     private int TextColor;
+    OnChangeValueListener mListener;
+
+    public interface OnChangeValueListener {
+        void onEvent();
+    }
+
+    public void setChangeValueListener(OnChangeValueListener eventListener) {
+        mListener = eventListener;
+    }
 
     public SpGenderSwitch(Context context) {
         super(context);
@@ -102,6 +111,8 @@ public class SpGenderSwitch extends RelativeLayout {
                             mVal = GENRE_FEMALE;
                         }
                         SwitchView(mVal);
+                        if(mListener!=null)
+                            mListener.onEvent();
                     }
 
                     @Override
