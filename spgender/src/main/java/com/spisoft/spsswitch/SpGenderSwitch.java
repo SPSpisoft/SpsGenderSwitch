@@ -16,7 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 public class SpGenderSwitch extends RelativeLayout {
-    private static final int GENRE_MALE = 1, GENRE_FEMALE = 0;
+    private static final int GENRE_MALE = 1, GENRE_FEMALE = 2;
     private Context mContext;
     private View rootView;
     private long animate_duration = 600;
