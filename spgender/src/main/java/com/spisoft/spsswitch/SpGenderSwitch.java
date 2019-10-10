@@ -131,6 +131,10 @@ public class SpGenderSwitch extends RelativeLayout {
         return mVal;
     }
 
+    public void SetValue(){
+        SwitchView(mVal);
+    }
+
     public String GetText(){
         return iText.getText().toString();
     }
