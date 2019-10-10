@@ -131,8 +131,8 @@ public class SpGenderSwitch extends RelativeLayout {
         return mVal;
     }
 
-    public void SetValue(){
-        SwitchView(mVal);
+    public void SetValue(int val){
+        SwitchView(val);
     }
 
     public String GetText(){
