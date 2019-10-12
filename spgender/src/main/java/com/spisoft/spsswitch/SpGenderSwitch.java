@@ -89,6 +89,16 @@ public class SpGenderSwitch extends RelativeLayout {
         iText.setText(TitleGender);
         iText.setTextColor(TextColor);
 
+        iGenre.setOnLongClickListener(new OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                mVal = -1;
+                SwitchView(mVal);
+                if(mListener!=null)
+                    mListener.onEvent();
+                return true;
+            }
+        });
         iGenre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -128,12 +138,16 @@ public class SpGenderSwitch extends RelativeLayout {
         iGenre.setVisibility(VISIBLE);
         switch (mVal){
             case GENRE_MALE:
-                    iGenre.setImageResource(R.drawable.i_male);
-                    iText.setText(TitleMale);
+                iGenre.setImageResource(R.drawable.i_male);
+                iText.setText(TitleMale);
                 break;
             case GENRE_FEMALE:
-                    iGenre.setImageResource(R.drawable.i_female);
-                    iText.setText(TitleFemale);
+                iGenre.setImageResource(R.drawable.i_female);
+                iText.setText(TitleFemale);
+                break;
+            default:
+                iGenre.setImageResource(R.drawable.i_gender);
+                iText.setText(TitleGender);
                 break;
         }
     }
