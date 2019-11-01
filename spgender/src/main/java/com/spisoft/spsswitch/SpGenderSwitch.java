@@ -3,11 +3,14 @@ package com.spisoft.spsswitch;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -26,6 +29,8 @@ public class SpGenderSwitch extends RelativeLayout {
     private String TitleGender, TitleMale, TitleFemale;
     private int TextColor;
     OnChangeValueListener mListener;
+    private Drawable Isrc_1, Isrc_2, IBackGround;
+    private int SetAnimate;
 
     public interface OnChangeValueListener {
         void onEvent();
@@ -66,6 +71,9 @@ public class SpGenderSwitch extends RelativeLayout {
         TitleGender = getResources().getString(R.string.title_gender);
         TitleMale = getResources().getString(R.string.title_male);
         TitleFemale = getResources().getString(R.string.title_female);
+        IBackGround = getResources().getDrawable(R.drawable.i_gender);
+        Isrc_1 = getResources().getDrawable(R.drawable.i_male);
+        Isrc_2 = getResources().getDrawable(R.drawable.i_female);
 
         if (attrs != null) {
             final TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.SpGenderSwitch, 0, 0);
@@ -73,18 +81,29 @@ public class SpGenderSwitch extends RelativeLayout {
             iGenre.getLayoutParams().height = (int) typedArray.getDimension(R.styleable.SpGenderSwitch_SwitchSize,R.dimen.sps_lpr_sz_30);
             iGenre.getLayoutParams().width = (int) typedArray.getDimension(R.styleable.SpGenderSwitch_SwitchSize,R.dimen.sps_lpr_sz_30);
 
-            String _TitleGender = typedArray.getString(R.styleable.SpGenderSwitch_TitleGender);
+            String _TitleGender = typedArray.getString(R.styleable.SpGenderSwitch_TitleMain);
             if(_TitleGender != null) TitleGender = _TitleGender;
-            String _TitleMale = typedArray.getString(R.styleable.SpGenderSwitch_TitleMale);
+            String _TitleMale = typedArray.getString(R.styleable.SpGenderSwitch_TitleOption1);
             if(_TitleMale != null) TitleMale = _TitleMale;
-            String _TitleFemale = typedArray.getString(R.styleable.SpGenderSwitch_TitleFemale);
+            String _TitleFemale = typedArray.getString(R.styleable.SpGenderSwitch_TitleOption2);
             if(_TitleFemale != null) TitleFemale = _TitleFemale;
             if(!typedArray.getBoolean(R.styleable.SpGenderSwitch_TitleShow,true))
                 iText.setVisibility(GONE);
 
+            Drawable _Src_Background = typedArray.getDrawable(R.styleable.SpGenderSwitch_SrcBackground);
+            if(_Src_Background != null) IBackGround = _Src_Background;
+            Drawable _Src_1 = typedArray.getDrawable(R.styleable.SpGenderSwitch_SrcOption1);
+            if(_Src_1 != null) Isrc_1 = _Src_1;
+            Drawable _Src_2 = typedArray.getDrawable(R.styleable.SpGenderSwitch_SrcOption2);
+            if(_Src_2 != null) Isrc_2 = _Src_2;
+            if(typedArray.getBoolean(R.styleable.SpGenderSwitch_SetDefault,false)) mVal = 1;
+            SetAnimate = typedArray.getInt(R.styleable.SpGenderSwitch_AnimateType,0);
+
             TextColor = typedArray.getColor(R.styleable.SpGenderSwitch_TextColor, Color.BLACK);
             typedArray.recycle();
         }
+
+        SwitchView(mVal);
 
         iText.setText(TitleGender);
         iText.setTextColor(TextColor);
@@ -102,51 +121,104 @@ public class SpGenderSwitch extends RelativeLayout {
         iGenre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Animation animation = new RotateAnimation(0, 160, 0, view.getHeight()+20 );
-                animation.setDuration(animate_duration);
-                view.startAnimation(animation);
+                Switch(view, SetAnimate);
+            }
+        });
+    }
 
-                animation.setAnimationListener(new Animation.AnimationListener() {
-                    @Override
-                    public void onAnimationStart(Animation animation) {
-                        iText.setText("");
-                    }
+    private void Switch(View view, int i) {
+        Animation animation;
+        switch (i) {
+            default:
+                animation = new RotateAnimation(0, 160, 0, view.getHeight() + 20);
+                break;
 
-                    @Override
-                    public void onAnimationEnd(Animation animation) {
-                        iGenre.setVisibility(GONE);
-                        if (mVal != GENRE_MALE) {
-                            mVal = GENRE_MALE;
-                        } else {
-                            mVal = GENRE_FEMALE;
-                        }
-                        SwitchView(mVal);
-                        if(mListener!=null)
-                            mListener.onEvent();
-                    }
+            case 1:
+                float xCurrentPos = view.getLeft();
+                float yCurrentPos = view.getTop();
+                float yHeight = view.getHeight();
+                animation = new TranslateAnimation(xCurrentPos, xCurrentPos, yCurrentPos, yCurrentPos+yHeight);
+                break;
 
-                    @Override
-                    public void onAnimationRepeat(Animation animation) {
+        }
 
-                    }
-                });
+        animation.setDuration(animate_duration);
+        view.startAnimation(animation);
+
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                iText.setText("");
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                iGenre.setVisibility(GONE);
+                if (mVal != GENRE_MALE) {
+                    mVal = GENRE_MALE;
+                } else {
+                    mVal = GENRE_FEMALE;
+                }
+                SwitchView(mVal);
+                if(mListener!=null)
+                    mListener.onEvent();
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+    }
+
+    private void Switch_(View view, int i) {
+        float xCurrentPos = view.getLeft();
+        float yCurrentPos = view.getTop();
+        float yHeight = view.getHeight();
+
+        Animation animation = new TranslateAnimation(xCurrentPos, xCurrentPos, yCurrentPos, yCurrentPos+yHeight);
+        view.startAnimation(animation);
+
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                iText.setText("");
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                iGenre.setVisibility(GONE);
+                if (mVal != GENRE_MALE) {
+                    mVal = GENRE_MALE;
+                } else {
+                    mVal = GENRE_FEMALE;
+                }
+                SwitchView(mVal);
+                if(mListener!=null)
+                    mListener.onEvent();
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
             }
         });
     }
 
     private void SwitchView(int mVal) {
+
         iGenre.setVisibility(VISIBLE);
         switch (mVal){
             case GENRE_MALE:
-                iGenre.setImageResource(R.drawable.i_male);
+                iGenre.setImageDrawable(Isrc_1);
                 iText.setText(TitleMale);
                 break;
             case GENRE_FEMALE:
-                iGenre.setImageResource(R.drawable.i_female);
+                iGenre.setImageDrawable(Isrc_2);
                 iText.setText(TitleFemale);
                 break;
             default:
-                iGenre.setImageResource(R.drawable.i_gender);
+                iGenre.setImageDrawable(IBackGround);
                 iText.setText(TitleGender);
                 break;
         }
