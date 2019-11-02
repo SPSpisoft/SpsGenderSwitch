@@ -18,6 +18,8 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 public class SpGenderSwitch extends RelativeLayout {
     private static final int GENRE_MALE = 1, GENRE_FEMALE = 2;
     private Context mContext;
@@ -31,6 +33,9 @@ public class SpGenderSwitch extends RelativeLayout {
     OnChangeValueListener mListener;
     private Drawable Isrc_1, Isrc_2, IBackGround;
     private int SetAnimate;
+    private boolean ConfirmQS;
+    private Context context;
+    private String ConfirmTitle, ConfirmContent, ConfirmOK, ConfirmCancel;
 
     public interface OnChangeValueListener {
         void onEvent();
@@ -121,9 +126,44 @@ public class SpGenderSwitch extends RelativeLayout {
         iGenre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Switch(view, SetAnimate);
+                if(!ConfirmQS)
+                    Switch(view, SetAnimate);
+                else
+                    Confirmation(view);
             }
         });
+    }
+
+    public void SetConfirm(Context mContext, String mTitle, String mContentTxt, String mOkTxt, String mCancelTxt){
+        ConfirmQS = true;
+        context = mContext;
+        ConfirmTitle = mTitle;
+        ConfirmContent = mContentTxt;
+        ConfirmOK = mOkTxt;
+        ConfirmCancel = mCancelTxt;
+    }
+
+    private void Confirmation(final View view) {
+        new SweetAlertDialog(context, SweetAlertDialog.WARNING_TYPE)
+                .setTitleText(ConfirmTitle)
+                .setContentText(ConfirmContent)
+                .setConfirmText(ConfirmOK)
+                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sDialog) {
+                        sDialog.cancel();
+                        Switch(view, SetAnimate);
+                    }
+                })
+                .setCancelText(ConfirmCancel)
+                .showCancelButton(true)
+                .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sDialog) {
+                        sDialog.cancel();
+                    }
+                })
+                .show();
     }
 
     private void Switch(View view, int i) {
