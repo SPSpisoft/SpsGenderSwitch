@@ -134,8 +134,8 @@ public class SpGenderSwitch extends RelativeLayout {
         });
     }
 
-    public void SetConfirm(Context mContext, String mTitle, String mContentTxt, String mOkTxt, String mCancelTxt){
-        ConfirmQS = true;
+    public void SetConfirm(Context mContext,boolean QSConfirm, String mTitle, String mContentTxt, String mOkTxt, String mCancelTxt){
+        ConfirmQS = QSConfirm;
         context = mContext;
         ConfirmTitle = mTitle;
         ConfirmContent = mContentTxt;
