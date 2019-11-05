@@ -36,6 +36,7 @@ public class SpGenderSwitch extends RelativeLayout {
     private boolean ConfirmQS;
     private Context context;
     private String ConfirmTitle, ConfirmContent, ConfirmOK, ConfirmCancel;
+    private boolean Disable = false;
 
     public interface OnChangeValueListener {
         void onEvent();
@@ -126,10 +127,12 @@ public class SpGenderSwitch extends RelativeLayout {
         iGenre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!ConfirmQS)
-                    Switch(view, SetAnimate);
-                else
-                    Confirmation(view);
+                if(!Disable) {
+                    if (!ConfirmQS)
+                        Switch(view, SetAnimate);
+                    else
+                        Confirmation(view);
+                }
             }
         });
     }
@@ -270,6 +273,10 @@ public class SpGenderSwitch extends RelativeLayout {
 
     public void SetValue(int val){
         SwitchView(val);
+    }
+
+    public void SetDisable(boolean disable){
+        this.Disable = disable;
     }
 
     public String GetText(){

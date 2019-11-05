@@ -23,7 +23,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         final SpGenderSwitch Met = findViewById(R.id.met);
-        Met.SetConfirm(MainActivity.this,"TT","QQ","OK","Cancel");
+//        Met.SetConfirm(MainActivity.this,false,"TT","QQ","OK","Cancel");
+        Met.SetDisable(true);
         Met.SetValue(gn);
         Met.setChangeValueListener(new SpGenderSwitch.OnChangeValueListener() {
             public void onEvent() {
